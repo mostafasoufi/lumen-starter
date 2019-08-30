@@ -18,8 +18,10 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->char('first_name', 100);
             $table->char('last_name', 100);
-            $table->char('email')->nullable();
-            $table->char('password', 100)->nullable();
+            $table->char('email');
+            $table->char('password', 100);
+            $table->char('verify_code', 4);
+            $table->enum('status', ['enabled', 'disabled'])->default('disabled');
         });
     }
 
