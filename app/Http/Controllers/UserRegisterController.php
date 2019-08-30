@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\RegisterUsers;
+use App\User;
 
 class UserRegisterController extends Controller
 {
@@ -15,8 +16,23 @@ class UserRegisterController extends Controller
     {
         return [
             'first_name' => 'required|string|max:100',
+            'last_name' => 'required|string|max:100',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ];
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    protected function create(Array $data)
+    {
+        return User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+        ]);
     }
 }
