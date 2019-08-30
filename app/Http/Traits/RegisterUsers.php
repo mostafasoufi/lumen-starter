@@ -19,6 +19,6 @@ trait RegisterUsers
 
         $this->create($request->all());
 
-        return response()->json(['error' => false, 'message' => 'Register has been successfully.']);
+        return response()->json(['error' => false, 'message' => __('Register has been successfully.')]);
     }
 }
