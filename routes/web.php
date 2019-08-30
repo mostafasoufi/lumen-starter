@@ -17,19 +17,19 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'v1'], function () use ($router) {
     // User account.
-    $router->post('/account/register', 'UserRegisterController@register');
-    $router->post('/account/verify', ['middleware' => 'UserVerify', 'uses' => 'UserRegisterController@verifyAccount']);
-    $router->post('/account/forgot', ['middleware' => 'UserForgot', 'uses' => 'UserRegisterController@forgotAccount']);
-    $router->post('/account/reset', ['middleware' => 'UserResetPassword', 'uses' => 'UserRegisterController@resetAccount']);
+    $router->post('/user/register', 'UserRegisterController@register');
+    $router->post('/user/verify', ['middleware' => 'UserVerify', 'uses' => 'UserVerifyController@verifyAccount']);
+    $router->post('/user/forgot', ['middleware' => 'UserForgot', 'uses' => 'UserForgotController@forgotAccount']);
+    $router->post('/user/reset', ['middleware' => 'UserReset', 'uses' => 'UserResetController@resetAccount']);
 
     // Authentication.
     $router->post('/authorize', 'AuthController@login');
 
     $router->group(['middleware' => 'auth'], function ($router) {
         // User profile.
-        $router->get('/account/profile', 'UserProfileController@showProfile');
-        $router->put('/account/profile', 'UserProfileController@updateProfile');
-        $router->put('/account/password', 'UserProfileController@updatePassword');
+        $router->get('/user/profile', 'UserProfileController@showProfile');
+        $router->put('/user/profile', 'UserProfileController@updateProfile');
+        $router->put('/user/password', 'UserProfileController@updatePassword');
 
         // Orders
         $router->get('/order', 'OrderController@getOrders');

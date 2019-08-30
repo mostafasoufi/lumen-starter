@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -30,6 +31,13 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|exists:users',
             'password' => 'required',
         ]);
+
+        // Get user info.
+        $user = User::where('email', $request->get('email'))->first();
+
+        if ($user->status == 0) {
+            return response()->json(['error' => true, 'message' => 'Email is not enabled.'], 401);
+        }
 
         try {
 

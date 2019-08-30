@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->char('email');
             $table->char('password', 100);
             $table->char('verify_code', 4);
-            $table->enum('status', ['enabled', 'disabled'])->default('disabled');
+            $table->boolean('status', 2)->default('0');
         });
     }
 

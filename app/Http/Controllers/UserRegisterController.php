@@ -33,6 +33,7 @@ class UserRegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'verify_code' => mt_rand(1000, 9000)
         ]);
     }
 }
