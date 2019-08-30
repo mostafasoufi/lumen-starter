@@ -101,12 +101,4 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
-/*
-|--------------------------------------------------------------------------
-| Register The Application Configurations
-|--------------------------------------------------------------------------
-|
-*/
-$app->configure('app');
-
 return $app;

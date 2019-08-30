@@ -31,17 +31,10 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Get user token.
-        $user_token = User::where('email', $request->email)->first();
-
-        if (!$user_token) {
-            return response()->json(['error' => true, 'message' => __('message.user.required.login')], 401);
-        }
-
         try {
 
             if (!$token = $this->jwt->attempt($request->only('email', 'password'))) {
-                return response()->json(['error' => true, 'message' => __('message.password.invalid')], 404);
+                return response()->json(['error' => true, 'message' => 'Invalid Password.'], 404);
             }
 
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
