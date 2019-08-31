@@ -18,9 +18,9 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'v1'], function () use ($router) {
     // User account.
     $router->post('/user/register', 'UserRegisterController@register');
-    $router->post('/user/verify', ['middleware' => 'UserVerify', 'uses' => 'UserVerifyController@verifyAccount']);
-    $router->post('/user/forgot', ['middleware' => 'UserForgot', 'uses' => 'UserForgotController@forgotAccount']);
-    $router->post('/user/reset', ['middleware' => 'UserReset', 'uses' => 'UserResetController@resetAccount']);
+    $router->post('/user/verify', 'UserVerifyController@verify');
+    $router->post('/user/forgot', ['middleware' => 'UserForgot', 'uses' => 'UserForgotController@forgot']);
+    $router->post('/user/reset', ['middleware' => 'UserReset', 'uses' => 'UserResetController@reset']);
 
     // Authentication.
     $router->post('/authorize', 'AuthController@login');

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\RegisterUsers;
+use App\Http\Traits\UserAccount;
 use App\User;
 
 class UserRegisterController extends Controller
 {
-    use RegisterUsers;
+    use UserAccount;
 
     /**
      * @return array
@@ -26,7 +26,7 @@ class UserRegisterController extends Controller
      * @param array $data
      * @return mixed
      */
-    protected function create(Array $data)
+    protected function createUser(Array $data)
     {
         return User::create([
             'first_name' => $data['first_name'],

@@ -36,26 +36,26 @@ class AuthController extends Controller
         $user = User::where('email', $request->get('email'))->first();
 
         if ($user->status == 0) {
-            return response()->json(['error' => true, 'message' => 'Email is not enabled.'], 401);
+            return response()->json(['error' => true, 'message' => __('message.email.not.active')], 401);
         }
 
         try {
 
             if (!$token = $this->jwt->attempt($request->only('email', 'password'))) {
-                return response()->json(['error' => true, 'message' => 'Invalid Password.'], 404);
+                return response()->json(['error' => true, 'message' => __('message.invalid.password')], 404);
             }
 
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
-            return response()->json(['error' => true, 'message' => 'Token Expired.'], 500);
+            return response()->json(['error' => true, 'message' => __('token.expired')], 500);
 
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
-            return response()->json(['error' => true, 'message' => 'Token Invalid'], 500);
+            return response()->json(['error' => true, 'message' => __('token.invalid')], 500);
 
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
-            return response()->json(['error' => true, 'message' => 'Token Absent'], 500);
+            return response()->json(['error' => true, 'message' => __('token.absent')], 500);
 
         }
 
