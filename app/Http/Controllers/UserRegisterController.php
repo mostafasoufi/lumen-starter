@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\UserAccount;
+use App\Mail\UserRegister;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class UserRegisterController extends Controller
 {
@@ -35,5 +37,15 @@ class UserRegisterController extends Controller
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             'verify_code' => mt_rand(1000, 9000)
         ]);
+    }
+
+    /**
+     * @param array $data
+     * @param $code
+     */
+    protected function sendEmail(Array $data, $code)
+    {
+        // Email the verification code.
+        Mail::to($data['email'])->send(new UserRegister($code));
     }
 }

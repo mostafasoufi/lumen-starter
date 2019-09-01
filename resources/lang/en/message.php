@@ -2,6 +2,7 @@
 return [
     'user.not.found' => 'User not found.',
     'code.wrong' => 'Code is wrong.',
+    'code.sent' => 'Code sent to your email successfully.',
     'verify.already.done' => 'User already verified.',
     'user.unauthorized' => 'User unauthorized.',
     'user.registered' => 'User registered successfully.',
