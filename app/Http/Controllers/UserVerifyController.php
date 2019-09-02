@@ -39,6 +39,6 @@ class UserVerifyController extends Controller
      */
     protected function verifyUser(Array $data)
     {
-        return User::where('email', $data['email'])->update(['status' => '1']);
+        return User::where('email', $data['email'])->update(['status' => '1', 'verify_code' => $this->code]);
     }
 }
