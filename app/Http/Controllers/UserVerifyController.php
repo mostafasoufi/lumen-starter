@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\UserAccount;
 use App\User;
+use App\Http\Helper;
 
 class UserVerifyController extends Controller
 {
@@ -19,7 +20,7 @@ class UserVerifyController extends Controller
      */
     public function __construct()
     {
-        $this->code = mt_rand(1000, 9000);
+        $this->code = Helper\generate_code();
     }
 
     /**

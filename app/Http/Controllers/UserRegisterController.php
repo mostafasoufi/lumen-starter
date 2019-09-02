@@ -6,6 +6,7 @@ use App\Http\Traits\UserAccount;
 use App\Mail\UserRegister;
 use App\User;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Helper;
 
 class UserRegisterController extends Controller
 {
@@ -21,7 +22,7 @@ class UserRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->code = mt_rand(1000, 9000);
+        $this->code = Helper\generate_code();
     }
 
     /**

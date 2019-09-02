@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\UserAccount;
 use App\User;
-use Illuminate\Http\Request;
+use App\Http\Helper;
 
 class UserResetPasswordController extends Controller
 {
@@ -20,7 +20,7 @@ class UserResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->code = mt_rand(1000, 9000);
+        $this->code = Helper\generate_code();
     }
 
     /**
