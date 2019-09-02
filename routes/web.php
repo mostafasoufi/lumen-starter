@@ -31,6 +31,6 @@ $router->group(['prefix' => 'v1'], function () use ($router) {
         $router->put('/user/profile', 'UserProfileController@update');
         $router->put('/user/password', 'UserProfileController@password');
 
-        // ** You can register another routes here such as orders, books, posts and etc.
+        // ** You can register your routes here that required to authorizing. for example orders, books, posts and etc. ** //
     });
 });
