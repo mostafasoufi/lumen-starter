@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\Resource;
 
-class Profile extends Resource
+class ProfileResource extends Resource
 {
     /**
      * Transform the resource into an array.
