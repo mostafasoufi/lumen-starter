@@ -27,12 +27,10 @@ $router->group(['prefix' => 'v1'], function () use ($router) {
 
     $router->group(['middleware' => 'auth'], function ($router) {
         // User profile.
-        $router->get('/user/profile', 'UserProfileController@showProfile');
-        $router->put('/user/profile', 'UserProfileController@updateProfile');
-        $router->put('/user/password', 'UserProfileController@updatePassword');
+        $router->get('/user/profile', 'UserProfileController@show');
+        $router->put('/user/profile', 'UserProfileController@update');
+        $router->put('/user/password', 'UserProfileController@password');
 
-        // Orders
-        $router->get('/order', 'OrderController@getOrders');
-        $router->get('/order/{order}', ['middleware' => 'UserOrder', 'uses' => 'OrderController@getSingleOrder']);
+        // ** You can register another routes here such as orders, books, posts and etc.
     });
 });
