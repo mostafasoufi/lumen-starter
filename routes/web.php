@@ -20,7 +20,7 @@ $router->group(['prefix' => 'v1'], function () use ($router) {
     $router->post('/user/register', 'UserRegisterController@register');
     $router->post('/user/verify', 'UserVerifyController@verify');
     $router->post('/user/forgot', 'UserForgotController@forgot');
-    $router->post('/user/reset', ['middleware' => 'UserReset', 'uses' => 'UserResetController@reset']);
+    $router->post('/user/reset', 'UserResetPasswordController@reset');
 
     // Authentication.
     $router->post('/authorize', 'AuthController@login');

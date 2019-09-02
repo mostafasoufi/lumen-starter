@@ -12,6 +12,19 @@ class UserRegisterController extends Controller
     use UserAccount;
 
     /**
+     * @var int Verify code.
+     */
+    public $code;
+
+    /**
+     * UserRegisterController constructor.
+     */
+    public function __construct()
+    {
+        $this->code = mt_rand(1000, 9000);
+    }
+
+    /**
      * @return array
      */
     protected function rules()
@@ -35,17 +48,16 @@ class UserRegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
-            'verify_code' => mt_rand(1000, 9000)
+            'verify_code' => $this->code
         ]);
     }
 
     /**
      * @param array $data
-     * @param $code
      */
-    protected function sendEmail(Array $data, $code)
+    protected function sendEmail(Array $data)
     {
         // Email the verification code.
-        Mail::to($data['email'])->send(new UserRegister($code));
+        Mail::to($data['email'])->send(new UserRegister($this->code));
     }
 }

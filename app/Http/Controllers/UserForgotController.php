@@ -12,6 +12,19 @@ class UserForgotController extends Controller
     use UserAccount;
 
     /**
+     * @var int Verify code.
+     */
+    public $code;
+
+    /**
+     * UserRegisterController constructor.
+     */
+    public function __construct()
+    {
+        $this->code = mt_rand(1000, 9000);
+    }
+
+    /**
      * @return array
      */
     protected function rules()
@@ -23,22 +36,20 @@ class UserForgotController extends Controller
 
     /**
      * @param array $data
-     * @param $code
      * @return mixed
      */
-    protected function updateCode(Array $data, $code)
+    protected function updateCode(Array $data)
     {
         // Update verification code.
-        User::where('email', $data['email'])->update(['verify_code' => $code]);
+        User::where('email', $data['email'])->update(['verify_code' => $this->code]);
     }
 
     /**
      * @param array $data
-     * @param $code
      */
-    protected function sendEmail(Array $data, $code)
+    protected function sendEmail(Array $data)
     {
         // Email the verification code.
-        Mail::to($data['email'])->send(new UserForgot($code));
+        Mail::to($data['email'])->send(new UserForgot($this->code));
     }
 }

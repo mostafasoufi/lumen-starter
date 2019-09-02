@@ -12,4 +12,5 @@ return [
     'token.expired' => 'Token Expired.',
     'token.invalid' => 'Token Invalid',
     'token.absent' => 'Token Absent',
+    'password.changed' => 'Password changed successfully.',
 ];

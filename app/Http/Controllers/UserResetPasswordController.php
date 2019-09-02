@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\UserAccount;
 use App\User;
+use Illuminate\Http\Request;
 
-class UserVerifyController extends Controller
+class UserResetPasswordController extends Controller
 {
     use UserAccount;
 
@@ -28,8 +29,9 @@ class UserVerifyController extends Controller
     protected function rules()
     {
         return [
-            'email' => 'required|string|email|max:255|exists:users',
+            'email' => 'required|email|max:256',
             'code' => 'required|string|digits_between:4,4|exists:users,verify_code',
+            'password' => 'required|min:5|max:128',
         ];
     }
 
@@ -37,8 +39,9 @@ class UserVerifyController extends Controller
      * @param array $data
      * @return mixed
      */
-    protected function verifyUser(Array $data)
+    protected function changePassword(Array $data)
     {
-        return User::where('email', $data['email'])->update(['status' => '1']);
+        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        return User::where('email', $data['email'])->update(['password' => $password, 'verify_code' => $this->code]);
     }
 }
