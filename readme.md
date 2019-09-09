@@ -1,7 +1,7 @@
-# Lumen Starer
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+# Lumen Starter
+Lumen starter is a Laravel Lumen which most common packages, tools, and class that you need to fire an API for your project.
 
-# Features
+## Features
 * Simple classes for starting with Lumen
 * User authentication base on JWT
 * User Account and User Profile controllers
@@ -16,14 +16,16 @@ Laravel Lumen is a stunningly fast PHP micro-framework for building web applicat
   * [Illuminate Mail component](https://github.com/illuminate/mail)
   * [JWT Auth](https://github.com/tymondesigns/jwt-auth)
 
-# Requirements
+## Requirements
 * PHP >= 7.1.3
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension
 * [Composer](https://getcomposer.org/) dependency manager
 
-# Installation
+## Installation
+1. **Clone the repo**
+
 To install the Lumen Starter you should take a clone from the repository in your local with below command:
 ```
 git clone https://github.com/mostafasoufi/lumen-starter.git
@@ -33,26 +35,30 @@ Then go to project with `cd`
 ```
 cd lumen-starter
 ```
+2. **Install packages & dependencies the repo**
 
 Then try to install all packages with the composer:
 ```
 composer install
 ```
 
-### Configuration
+3. **Configuration**
+
 All of the configuration options for the Lumen framework are stored in the .env file. take a copy from `.env.example` to `.env`.
 ```
 cp .env.example .env
 ```
 You should also configure your local environment in this file.
 
-### Generate secret key
+4. **Generate secret key**
+
 This will update your `.env` file with something like `JWT_SECRET=foobar`
 ```
 php artisan jwt:secret
 ```
 
-### Serving Your Application
+5. **Serving Your Application**
+
 To serve your project locally, you can use the built-in PHP development server:
 ```
 php -S localhost:8000 -t public
